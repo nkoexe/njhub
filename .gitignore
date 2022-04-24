@@ -5,5 +5,3 @@ __pycache__/
 *.pyproject.user
 
 server/database/
-
-*
