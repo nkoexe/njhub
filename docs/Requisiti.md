@@ -12,11 +12,18 @@ Esempio: orologio vede se una lampada e' attiva o meno, puo' accenderla, spegner
 Ogni dispositivo e' completamente personalizzato e non comunica con nessuno se non con il server. \
 Ogni dispositivo deve fornire un'API per vederne lo stato e eseguire funzioni su di esso. \
 Ogni dispositivo deve avere un'interfaccia grafica per permettere all'utente di mandare comandi al server. \
-Dovra' essere previsto un sistema di autenticazione per ogni comunicazione, in modo da mettere in sicurezza i dispositivi
+Dovra' essere previsto un sistema di autenticazione per ogni comunicazione, in modo da mettere in sicurezza i dispositivi \
+Funzionalità comuni (API) che devono provvedere tutti i dispositivi:
 
-Qui l'elenco di tutti i dispositivi previsti.
+- Poter spegnere, riavviare o sospendere il dispositivo
+- Poter mostrare una notifica - sui dispositivi che lo permettono (non luci smart)
+- Poter visualizzare le informazioni sul dispositivo (attivo o meno, batteria, uptime, ecc)
+
+Qui l'elenco e descrizioni di tutti i dispositivi previsti.
 
 ### PC
+
+~ inserire descrizione
 
 - **API**: \
   Spegni / Riavvia / Sospendi \
