@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from json import dump, load
 from os import fspath
 from pathlib import Path
@@ -25,27 +25,22 @@ def get_birthdays(interval: int = 3) -> list:
     :return: a list of tuples of the form (name: str, date: datetime, age: int, days_remaining: int)
     :rtype: list
     '''
+    # the result list
     lst = []
 
     for i in _birthdates:
-        date = get_date(_birthdates[i])
+        # Get the date of the birthday. String format: dd-mm-yyyy
+        date = datetime.strptime(_birthdates[i], '%d-%m-%Y')
+        # If the birthday is in the interval 'remaining' is the days remaining, False otherwise
         remaining = birthday_in_interval(date, interval)
         if remaining:
-            lst.append((i, date, _now.year - date.year, remaining))
+            # Add the birthday to the list, refer to docstring for the format
+            # The age (third element) is calculated as the difference between the year of the next
+            # birthday date and the birth year, that's why the remaining days are added to the current date,
+            # as the birthday could be in the following year.
+            lst.append((i, date, (_now + timedelta(days=remaining)).year - date.year, remaining))
 
     return lst
-
-
-def get_date(date: str) -> datetime:
-    '''
-    Convert date string to datetime object.
-    Ex: '01-01-2020' -> datetime(2020, 1, 1)
-
-    :param str date: the date string
-    :return: the datetime object
-    :rtype: datetime
-    '''
-    return datetime.strptime(date, '%d-%m-%Y')
 
 
 def birthday_in_interval(date: datetime, interval: int) -> int or bool:
@@ -59,6 +54,8 @@ def birthday_in_interval(date: datetime, interval: int) -> int or bool:
     :return: number of days remaining or False
     :rtype: int or bool
     '''
+    # Todo: redo, adding the interval to the current date not limiting the interval to 2 years
+
     date = date.replace(year=_now.year)
     remaining = (date - _now).days
 
