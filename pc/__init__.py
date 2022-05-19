@@ -1,3 +1,4 @@
+from os import system
 from socket import socket
 from threading import Thread
 
@@ -5,6 +6,7 @@ from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 from NotificationManager import Notifier
+from SickShutdown import ShutdownUI
 
 
 MY_ID = '1'
@@ -29,7 +31,7 @@ devices = {
 
 
 # send a notification
-def notify(from_id, body):
+def notify(body: str):
     '''
     Build and send a notification to the notification manager.
 
@@ -52,17 +54,30 @@ def notify(from_id, body):
 def handle_message(msg: str):
     '''
     Handle a recieved message.
+    Refer to /docs/Dati.md for the message structure.
 
     :param str msg: the string message to handle
     '''
 
     # subdivide the message into its components
-    from_id, to_id, timestamp, actiontype, body = msg[0], msg[1], msg[2:12], msg[12], msg[13:]
+    from_id, to_id, timestamp, action, body = msg[0], msg[1], msg[2:12], msg[12], msg[13:]
+
+    assert to_id == MY_ID
+
+    # * CONTROL
+    if action == '0':
+        if body == '0':
+            exit()
+        elif body == '1':
+            system('shutdown -s -t 0')
+        elif body == '2':
+            system('shutdown -r -t 0')
+        elif body == '3':
+            system('rundll32.exe powrprof.dll, SetSuspendState Sleep')
 
     # * NOTIFICATION
-    if actiontype == '1':
-        assert to_id == MY_ID
-        notify(from_id, body)
+    elif action == '1':
+        notify(body)
 
 
 def main():
@@ -94,6 +109,7 @@ if __name__ == '__main__':
 
     # initialize services
     notifier = Notifier(engine)
+    shutdownUI = ShutdownUI(engine)
     # * assistant = Assistant(engine)
 
     # start the main loop for the connection in a separate thread

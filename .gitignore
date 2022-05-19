@@ -3,5 +3,6 @@ __pycache__/
 
 *.pyproject
 *.pyproject.user
+*.autosave
 
 server/database/
