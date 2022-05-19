@@ -16,34 +16,25 @@ Dovra' essere previsto un sistema di autenticazione per ogni comunicazione, in m
 Funzionalità comuni (API) che devono provvedere tutti i dispositivi:
 
 - Poter spegnere, riavviare o sospendere il dispositivo
-- Poter mostrare una notifica - sui dispositivi che lo permettono (non luci smart)
+- Poter mostrare una notifica (sui dispositivi che lo permettono ovvero non luci smart)
 - Poter visualizzare le informazioni sul dispositivo (attivo o meno, batteria, uptime, ecc)
 
 Qui l'elenco e descrizioni di tutti i dispositivi previsti.
 
 ### PC
 
-~ inserire descrizione
+OS: Windows 11 \
+Linguaggio: Python 3.9.5
 
-- **API**: \
-  Spegni / Riavvia / Sospendi \
-  Uptime \
-  Notifica
-
-- **GUI**: \
-  Integrazione con Assistente \
-  Controllo di tutti i dispositivi \
-  Storico notifiche
+Questo dispositivo corrisponde al mio PC desktop di casa. \
+L'unica GUI prevista per ora sarà quella dell'Assistente, che permetterà di visualizzare informazioni varie, quali ora, meteo, musica in riproduzione ecc., e infomzioni sui dispositivi, permettendo di controllarli.
 
 ### Telefono
 
-- **API**: \
-  Batteria, luminosita', ... \
-  Spegni / Riavvia \
-  Notifica
+OS: Android 13 \
+Linguaggio: Kotlin 1.6.x
 
-- **GUI**: \
-  Controllo di tutti i dispositivi
+Il mio telefono.
 
 ### Orologio
 
@@ -61,5 +52,3 @@ Qui l'elenco e descrizioni di tutti i dispositivi previsti.
   - Luci: On/Off, luminosita', colore, scena, programmazione \
   - Socket: On/Off, programmazione \
   - Tapparelle: Su/Stop/Giu', programmazione
-
-## Requisiti sui dati

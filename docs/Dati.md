@@ -67,16 +67,33 @@ Lunghezza: 1 carattere
 
 #### Elenco di ogni carattere previsto e delle relative azioni da svolgere.
 
-| Carattere | Azione   |
-| :-------- | :------- |
-| `1`       | Notifica |
-| `2`       | xx       |
+| Carattere | Azione    |
+| :-------- | :-------- |
+| `0`       | Controllo |
+| `1`       | Notifica  |
 
 ### 13-x: Contenuto
 
 La restante sezione del messaggio è suddivisa e segue uno standard in base all'azione richiesta.
 
-#### Notifica
+#### **Controllo**
+
+Controllo dello stato del dispositivo.
+
+- x1: Azione richiesta
+
+Azioni previste:
+
+| Carattere | Azione                 |
+| :-------- | :--------------------- |
+| `0`       | Chiusura del programma |
+| `1`       | Spegnimento            |
+| `2`       | Riavvio                |
+| `3`       | Sospensione            |
+
+#### **Notifica**
+
+Messaggio di notifica al dispositivo.
 
 - x4: Lunghezza della stringa del titolo
 - x\*: Titolo della notifica
